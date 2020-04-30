@@ -1,0 +1,19 @@
+{
+  "name": "sr-service",
+  "version": "1.0.0",
+  "description": "Shortening & Redirect Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [
+    "shortening",
+    "redirect"
+  ],
+  "dependencies": {
+    "fastify": "^2.14.0",
+    "pino-pretty": "^4.0.0"
+  }
+}
