@@ -9,10 +9,22 @@ const fastify = require('fastify')({
 var data = {};
 
 fastify.all('/*', function (request, reply) {
-	data['code'] = request.raw.url.replace('/', '')
-	data['ip'] = request.raw.ip
-	data['userAgent'] = request.headers['user-agent']
-  console.log(data)
+fastify.register(require('fastify-cookie'))
+
+fastify.all('/:code', function (request, reply) {
+	const data = {
+		code: request.params.code,
+		ip: request.ip,
+		userAgent: request.headers['user-agent'],
+		token: request.cookies.activeskill_user_token
+	}
+	console.log(data)
+	
+	if (!data.token) {
+		reply.setCookie('activeskill_user_token', 'testtoken', {
+			domain: 'localhost'
+		})
+	}
 
   reply.redirect(301, 'http://www.okami.tech')
 })
