@@ -6,18 +6,13 @@ const fastify = require('fastify')({
 	}
 })
 
-let code;
-let ip;
-let userAgent;
-
+var data = {};
 
 fastify.all('/*', function (request, reply) {
-	code = request.raw.url.replace('/', '')
-	ip = request.raw.ip
-	userAgent = request.headers['user-agent']
-  console.log('code: '+code)
-  console.log('ip: '+ip)
-	console.log('user agent: '+userAgent)
+	data['code'] = request.raw.url.replace('/', '')
+	data['ip'] = request.raw.ip
+	data['userAgent'] = request.headers['user-agent']
+  console.log(data)
 
   reply.redirect(301, 'http://www.okami.tech')
 })
